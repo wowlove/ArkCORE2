@@ -2,8 +2,8 @@
 #define __REVISION_H__
  #define _HASH                      "@rev_hash@"
  #define _DATE                      "@rev_date@"
- #define VER_COMPANYNAME_STR        "Project SkyFire Developers"
- #define VER_LEGALCOPYRIGHT_STR     "(c)2010-2012 Project SkyFire & TrinityCore"
+ #define VER_COMPANYNAME_STR        "Project ArkCORE2 Developers"
+ #define VER_LEGALCOPYRIGHT_STR     "(c)2010-2012 Project ArkCORE2 & TrinityCore"
  #define VER_FILEVERSION            0,0,0
  #define VER_FILEVERSION_STR        "@rev_date@ (@rev_hash@)"
  #define VER_PRODUCTVERSION         VER_FILEVERSION

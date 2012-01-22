@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2011-2012 ArkCORE2 <http://www.arkania.net/>
+ * Copyright (C) 2010-2012 Project SkyFire <http://www.projectskyfire.org/> 
  * Copyright (C) 2005-2012 MaNGOS <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -37,8 +38,8 @@
 #ifdef _WIN32
 #include "ServiceWin32.h"
 char serviceName[] = "worldserver";
-char serviceLongName[] = "SkyFireEMU world service";
-char serviceDescription[] = "SkyFireEMU World of Warcraft:Cataclysm emulator world service";
+char serviceLongName[] = "ArkCORE2 world service";
+char serviceDescription[] = "ArkCORE2 World of Warcraft:Cataclysm emulator world service";
 /*
  * -1 - not in service mode
  *  0 - stopped

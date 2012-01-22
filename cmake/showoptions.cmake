@@ -1,9 +1,9 @@
 # output generic information about the core and buildtype chosen
 message("")
-message("* SkyFireEMU rev. hash  : ${rev_hash}")
-message("* SkyFireEMU rev. date  : ${rev_date}")
+message("* ArkCORE2 rev. hash  : ${rev_hash}")
+message("* ArkCORE2 rev. date  : ${rev_date}")
 if( UNIX )
-  message("* SkyFireEMU buildtype  : ${CMAKE_BUILD_TYPE}")
+  message("* ArkCORE2 buildtype  : ${CMAKE_BUILD_TYPE}")
 endif()
 message("")
 

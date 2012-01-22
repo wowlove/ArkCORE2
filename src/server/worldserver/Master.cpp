@@ -1,5 +1,6 @@
 /*
- * Copyright (C) 2008-2012 TrinityCore <http://www.trinitycore.org/>
+ * Copyright (C) 2011-2012 ArkCORE2 <http://www.arkania.net/>
+ * Copyright (C) 2010-2012 Project SkyFire <http://www.projectskyfire.org/> 
  * Copyright (C) 2005-2012 MaNGOS <http://getmangos.com/>
  *
  * This program is free software; you can redistribute it and/or modify it
@@ -118,17 +119,17 @@ int Master::Run()
     seed1.SetRand(16 * 8);
 
     sLog->outString("%s (worldserver-daemon)", _FULLVERSION);
-    sLog->outString("<Ctrl-C> to stop.\n");
-
-    sLog->outString(" ");
-    sLog->outString("   ______  __  __  __  __  ______ __  ______  ______ ");
-    sLog->outString("  /\\  ___\\/\\ \\/ / /\\ \\_\\ \\/\\  ___/\\ \\/\\  == \\/\\  ___\\ ");
-    sLog->outString("  \\ \\___  \\ \\  _'-\\ \\____ \\ \\  __\\ \\ \\ \\  __<\\ \\  __\\ ");
-    sLog->outString("   \\/\\_____\\ \\_\\ \\_\\/\\_____\\ \\_\\  \\ \\_\\ \\_\\ \\_\\ \\_____\\ ");
-    sLog->outString("    \\/_____/\\/_/\\/_/\\/_____/\\/_/   \\/_/\\/_/ /_/\\/_____/ ");
-    sLog->outString("  Project SkyFireEmu 2012(c) Open-sourced Game Emulation ");
-    sLog->outString("           <http://www.projectskyfire.org/> ");
-    sLog->outString(" ");
+			sLog->outString(" ");
+			sLog->outString(" A World of Warcraft: Cataclysm Core Emulator	");
+			sLog->outString("       _/_/              _/          _/_/_/    _/_/    _/_/_/    _/_/_/_/  ");
+			sLog->outString("    _/    _/  _/  _/_/  _/  _/    _/        _/    _/  _/    _/  _/         ");
+			sLog->outString("   _/_/_/_/  _/_/      _/_/      _/        _/    _/  _/_/_/    _/_/_/      ");
+			sLog->outString("  _/    _/  _/        _/  _/    _/        _/    _/  _/    _/  _/           ");
+			sLog->outString(" _/    _/  _/        _/    _/    _/_/_/    _/_/    _/    _/  _/_/_/_/  	");
+			sLog->outString(" Arkania Community (c) 2012");
+			sLog->outString("      <http://arkania.net/>");
+			sLog->outString(" ");
+			sLog->outString("<Ctrl-C> to stop.\n");
 
 #ifdef USE_SFMT_FOR_RNG
     sLog->outString("\n");

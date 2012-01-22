@@ -225,5 +225,5 @@ CREATE TABLE `version` (
 
 /*Data for the table `version` */
 
-insert  into `version`(`core_version`,`core_revision`,`db_version`,`script_version`,`cache_id`) values ('SkyFireEMU rev. 0000-00-00 00:00:00 +0000 (Archived) (Win64, Release)','Archived','SFDB_4.0.6a_0.1.2_04-09-2011','SkyFireAI 406.01.20',0);
+insert  into `version`(`core_version`,`core_revision`,`db_version`,`script_version`,`cache_id`) values ('ArkCORE2 rev. 0000-00-00 00:00:00 +0000 (Archived) (Win64, Release)','Archived','SFDB_4.0.6a_0.1.2_04-09-2011','SkyFireAI 406.01.20',0);
 
