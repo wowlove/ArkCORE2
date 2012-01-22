@@ -38,11 +38,11 @@ enum SpellEffIndex
 // loot modes for creatures and gameobjects, bitmask!
 enum LootModes
 {
-    LOOT_MODE_DEFAULT                  = 1,
-    LOOT_MODE_HARD_MODE_1              = 2,
-    LOOT_MODE_HARD_MODE_2              = 4,
-    LOOT_MODE_HARD_MODE_3              = 8,
-    LOOT_MODE_HARD_MODE_4              = 16
+    LOOT_MODE_DEFAULT                  = 0x1,
+    LOOT_MODE_HARD_MODE_1              = 0x2,
+    LOOT_MODE_HARD_MODE_2              = 0x4,
+    LOOT_MODE_HARD_MODE_3              = 0x8,
+    LOOT_MODE_HARD_MODE_4              = 0x16
 };
 
 enum Gender
@@ -169,7 +169,6 @@ enum Stats
 };
 
 #define MAX_STATS                        5
-#define MAX_POWERS                       10
 
 enum Powers
 {
@@ -180,10 +179,12 @@ enum Powers
     POWER_HAPPINESS                     = 4,
     POWER_RUNE                          = 5,
     POWER_RUNIC_POWER                   = 6,
-    POWER_SOUL_SHARDS                   = 7,
+    POWER_SOULSHARD                     = 7,
     POWER_ECLIPSE                       = 8,
     POWER_HOLY_POWER                    = 9,
-    POWER_ALL                           = 127,    // default for class?
+    POWER_ALTERNATIVE                   = 10,           // Used in some quests
+    MAX_POWERS                          = 11,
+    POWER_ALL                           = 127,          // default for class?
     POWER_HEALTH                        = 0xFFFFFFFE    // (-2 as signed value)
 };
 
@@ -836,11 +837,14 @@ enum SpellEffects
     SPELL_EFFECT_168                                = 168,
     SPELL_EFFECT_169                                = 169,
     SPELL_EFFECT_170                                = 170,
-    SPELL_EFFECT_171                                = 171,
-    SPELL_EFFECT_172                                = 172,
-    SPELL_EFFECT_173                                = 173,
-    SPELL_EFFECT_174                                = 174,
-    TOTAL_SPELL_EFFECTS                             = 175
+    SPELL_EFFECT_171                                = 171,  // Summons gamebject
+    SPELL_EFFECT_172                                = 172,  // Aoe ressurection
+    SPELL_EFFECT_173                                = 173,  // Guild tab unlocked (guild perk)
+    SPELL_EFFECT_174                                = 174,  //
+    SPELL_EFFECT_175                                = 175,  // Unused (4.0.6)
+    SPELL_EFFECT_176                                = 176,  // Some kind of sanctuary effect (Vanish)
+    SPELL_EFFECT_177                                = 177,
+    TOTAL_SPELL_EFFECTS                             = 178,
 };
 
 enum PetTameResult

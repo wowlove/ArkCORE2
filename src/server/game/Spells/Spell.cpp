@@ -2871,7 +2871,7 @@ uint32 Spell::SelectEffectTargets(uint32 i, SpellImplicitTargetInfo const& cur)
             {
                 Unit::AuraEffectList const& Auras = m_caster->GetAuraEffectsByType(SPELL_AURA_MOD_MAX_AFFECTED_TARGETS);
                 for (Unit::AuraEffectList::const_iterator j = Auras.begin(); j != Auras.end(); ++j)
-                    if ((*j)->IsAffectedOnSpell(m_spellInfo))
+                    if ((*j)->IsAffectingSpell(m_spellInfo))
                         maxTargets += (*j)->GetAmount();
 
                 if (m_spellInfo->Id == 5246) //Intimidating Shout
@@ -2891,7 +2891,7 @@ uint32 Spell::SelectEffectTargets(uint32 i, SpellImplicitTargetInfo const& cur)
             {
                 Unit::AuraEffectList const& Auras = m_caster->GetAuraEffectsByType(SPELL_AURA_MOD_MAX_AFFECTED_TARGETS);
                 for (Unit::AuraEffectList::const_iterator j = Auras.begin(); j != Auras.end(); ++j)
-                    if ((*j)->IsAffectedOnSpell(m_spellInfo))
+                    if ((*j)->IsAffectingSpell(m_spellInfo))
                         maxTargets += (*j)->GetAmount();
 
                 Trinity::RandomResizeList(gobjectList, maxTargets);
@@ -3681,7 +3681,7 @@ void Spell::finish(bool ok)
         Unit::AuraEffectList const& vIgnoreReset = m_caster->GetAuraEffectsByType(SPELL_AURA_IGNORE_MELEE_RESET);
         for (Unit::AuraEffectList::const_iterator i = vIgnoreReset.begin(); i != vIgnoreReset.end(); ++i)
         {
-            if ((*i)->IsAffectedOnSpell(m_spellInfo))
+            if ((*i)->IsAffectingSpell(m_spellInfo))
             {
                 found = true;
                 break;
@@ -3840,9 +3840,6 @@ void Spell::SendSpellStart()
     if (castFlags & CAST_FLAG_POWER_LEFT_SELF)
         data << uint32(m_caster->GetPower((Powers)m_spellInfo->PowerType));
 
-    if (castFlags & CAST_FLAG_AMMO)
-        WriteAmmoToPacket(&data);
-
     if (castFlags & CAST_FLAG_UNKNOWN_23)
     {
         data << uint32(0);
@@ -3932,9 +3929,6 @@ void Spell::SendSpellGo()
         data << uint32(0);
     }
 
-    if (castFlags & CAST_FLAG_AMMO)
-        WriteAmmoToPacket(&data);
-
     if (castFlags & CAST_FLAG_UNKNOWN_20)
     {
         data << uint32(0);
@@ -3947,78 +3941,6 @@ void Spell::SendSpellGo()
     }
 
     m_caster->SendMessageToSet(&data, true);
-}
-
-void Spell::WriteAmmoToPacket(WorldPacket * data)
-{
-    /*uint32 ammoInventoryType = 0;
-    uint32 ammoDisplayID = 0;
-
-    if (m_caster->GetTypeId() == TYPEID_PLAYER)
-    {
-        Item *pItem = m_caster->ToPlayer()->GetWeaponForAttack(RANGED_ATTACK);
-        if (pItem)
-        {
-            ammoInventoryType = pItem->GetProto()->InventoryType;
-            if (ammoInventoryType == INVTYPE_THROWN)
-                ammoDisplayID = pItem->GetProto()->DisplayInfoID;
-            else
-            {
-                uint32 ammoID = m_caster->ToPlayer()->GetUInt32Value(PLAYER_AMMO_ID);
-                if (ammoID)
-                {
-                    ItemPrototype const *proto = ObjectMgr::GetItemPrototype(ammoID);
-                    if (proto)
-                    {
-                        ammoDisplayID = proto->DisplayInfoID;
-                        ammoInventoryType = proto->InventoryType;
-                    }
-                }
-                else if (m_caster->HasAura(46699))      // Requires No Ammo
-                {
-                    ammoDisplayID = 5996;                   // normal arrow
-                    ammoInventoryType = INVTYPE_AMMO;
-                }
-            }
-        }
-    }
-    else
-    {
-        for (uint8 i = 0; i < 3; ++i)
-        {
-            if (uint32 item_id = m_caster->GetUInt32Value(UNIT_VIRTUAL_ITEM_SLOT_ID + i))
-            {
-                if (ItemEntry const * itemEntry = sItemStore.LookupEntry(item_id))
-                {
-                    if (itemEntry->Class == ITEM_CLASS_WEAPON)
-                    {
-                        switch(itemEntry->SubClass)
-                        {
-                            case ITEM_SUBCLASS_WEAPON_THROWN:
-                                ammoDisplayID = itemEntry->DisplayId;
-                                ammoInventoryType = itemEntry->InventoryType;
-                                break;
-                            case ITEM_SUBCLASS_WEAPON_BOW:
-                            case ITEM_SUBCLASS_WEAPON_CROSSBOW:
-                                ammoDisplayID = 5996;       // is this need fixing?
-                                ammoInventoryType = INVTYPE_AMMO;
-                                break;
-                            case ITEM_SUBCLASS_WEAPON_GUN:
-                                ammoDisplayID = 5998;       // is this need fixing?
-                                ammoInventoryType = INVTYPE_AMMO;
-                                break;
-                        }
-
-                        if (ammoDisplayID)
-                            break;
-                    }
-                }
-            }
-        }
-    }
-
-    *data << uint32(ammoDisplayID);
-    *data << uint32(ammoInventoryType);*/
 }
 
 void Spell::WriteSpellGoTargets(WorldPacket* data)
@@ -4739,7 +4661,7 @@ SpellCastResult Spell::CheckCast(bool strict)
         Unit::AuraEffectList const& ignore = m_caster->GetAuraEffectsByType(SPELL_AURA_MOD_IGNORE_SHAPESHIFT);
         for (Unit::AuraEffectList::const_iterator i = ignore.begin(); i != ignore.end(); ++i)
         {
-            if (!(*i)->IsAffectedOnSpell(m_spellInfo))
+            if (!(*i)->IsAffectingSpell(m_spellInfo))
                 continue;
             checkForm = false;
             break;
@@ -4765,7 +4687,7 @@ SpellCastResult Spell::CheckCast(bool strict)
     Unit::AuraEffectList const& stateAuras = m_caster->GetAuraEffectsByType(SPELL_AURA_ABILITY_IGNORE_AURASTATE);
     for (Unit::AuraEffectList::const_iterator j = stateAuras.begin(); j != stateAuras.end(); ++j)
     {
-        if ((*j)->IsAffectedOnSpell(m_spellInfo))
+        if ((*j)->IsAffectingSpell(m_spellInfo))
         {
             m_needComboPoints = false;
             if ((*j)->GetMiscValue() == 1)
@@ -6668,7 +6590,7 @@ void Spell::HandleLaunchPhase()
     Unit::AuraEffectList const& Auras = m_caster->GetAuraEffectsByType(SPELL_AURA_ABILITY_CONSUME_NO_AMMO);
     for (Unit::AuraEffectList::const_iterator j = Auras.begin(); j != Auras.end(); ++j)
     {
-        if ((*j)->IsAffectedOnSpell(m_spellInfo))
+        if ((*j)->IsAffectingSpell(m_spellInfo))
             usesAmmo=false;
     }
 
@@ -7263,7 +7185,7 @@ void Spell::PrepareTriggersExecutedOnHit()
     Unit::AuraEffectList const& targetTriggers = m_caster->GetAuraEffectsByType(SPELL_AURA_ADD_TARGET_TRIGGER);
     for (Unit::AuraEffectList::const_iterator i = targetTriggers.begin(); i != targetTriggers.end(); ++i)
     {
-        if (!(*i)->IsAffectedOnSpell(m_spellInfo))
+        if (!(*i)->IsAffectingSpell(m_spellInfo))
             continue;
         SpellInfo const* auraSpellInfo = (*i)->GetSpellInfo();
         uint32 auraSpellIdx = (*i)->GetEffIndex();
