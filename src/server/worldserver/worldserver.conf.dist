@@ -533,7 +533,7 @@ CharLogDump = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-CharLogDump.Separate = 0
+CharLogDump.Separate = 1
 
 #
 #    CharLogDump.SeparateDir
@@ -541,7 +541,7 @@ CharLogDump.Separate = 0
 #        Example:     "chardumps" - (Enabled)
 #        Default:     ""         - (Disabled)
 
-CharLogDump.SeparateDir = ""
+CharLogDump.SeparateDir = "chardumps"
 
 #
 #    GmLogFile
@@ -558,7 +558,7 @@ GmLogFile = "GM.log"
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-GmLogTimestamp = 0
+GmLogTimestamp = 1
 
 #
 #    GmLogPerAccount
@@ -567,7 +567,7 @@ GmLogTimestamp = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-GmLogPerAccount = 0
+GmLogPerAccount = 1
 
 #
 #    RaLogFile
@@ -608,7 +608,7 @@ SQLDeveloperLogFile = ""
 #        Example:     "SQLDriver.log" - (Enabled)
 #        Default:      ""             - (Disabled)
 
-SQLDriverLogFile = ""
+SQLDriverLogFile = "SQLDriver.log"
 
 #
 #    SQLDriverQueryLogging
@@ -616,7 +616,7 @@ SQLDriverLogFile = ""
 #        Default:     0 - (Disabled, Query errors only)
 #                     1 - (Enabled, Full query logging - may have performance impact)
 
-SQLDriverQueryLogging = 0
+SQLDriverQueryLogging = 1
 
 #
 #    LogColors
@@ -1375,7 +1375,7 @@ ClientCacheVersion = 0
 #        Default:     0 - (Disabled)
 #                     1 - (Enabled)
 
-Event.Announce = 0
+Event.Announce = 1
 
 #
 #    BeepAtStart
