@@ -695,7 +695,7 @@ void Aura::Update(uint32 diff, Unit* caster)
                 m_timeCla -= diff;
             else if (caster)
             {
-                if(m_spellInfo->ManaPerSecond > 0)
+                if (m_spellInfo->ManaPerSecond > 0)
                 {
                     if (int32 manaPerSecond = m_spellInfo->ManaPerSecond * caster->getLevel())
                     {
@@ -1237,7 +1237,7 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                 if (!caster)
                     break;
 
-                switch(GetId())
+                switch (GetId())
                 {
                     case 50227: // Warrior - Sword and Board
                     {
@@ -1264,7 +1264,7 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                 if (!caster)
                     break;
 
-                switch(GetId())
+                switch (GetId())
                 {
                     case 82925: // Master Marksman
                     {
@@ -1332,7 +1332,7 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                 // Sanctfied Wrath Cataclysm proc
                 if (GetId() == 31884)
                     if (caster->GetAuraEffect(SPELL_AURA_ADD_FLAT_MODIFIER, SPELLFAMILY_PALADIN, 3029, 0))
-                        caster->CastSpell(caster,57318,true);
+                        caster->CastSpell(caster, 57318, true);
                 break;
             case SPELLFAMILY_DEATHKNIGHT:
                 if (!caster)
@@ -1616,7 +1616,7 @@ void Aura::HandleAuraSpecificMods(AuraApplication const* aurApp, Unit* caster, b
                     GetSpellInfo()->SpellFamilyFlags[1] & 0x1000 && caster)
                 {
                     uint32 spell_id = 0;
-                    switch(GetId())
+                    switch (GetId())
                     {
                         case 19386: spell_id = 24131; break;
                         case 24132: spell_id = 24134; break;

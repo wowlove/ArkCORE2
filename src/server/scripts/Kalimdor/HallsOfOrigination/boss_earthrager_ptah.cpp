@@ -104,7 +104,7 @@ class boss_ptah : public CreatureScript
             void JustSummoned(Creature *summoned)
             {
                 summoned->SetInCombatWithZone();
-                if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM,0))
+                if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 0))
                     summoned->AI()->AttackStart(target);
                 Summons.Summon(summoned);
             }
@@ -146,7 +146,7 @@ class boss_ptah : public CreatureScript
                         return;
                     case EVENT_EARTH_POINT:
                         me->MonsterYell(SAY_SPELL, LANG_UNIVERSAL, NULL);
-                        if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM,1,100,true))
+                        if (Unit* target = SelectTarget(SELECT_TARGET_RANDOM, 1, 100, true))
                             DoCast(target, SPELL_EARTH_POINT);
                         events.ScheduleEvent(EVENT_EARTH_POINT, 8000);
                         return;

@@ -656,7 +656,7 @@ struct ItemTemplate
     // helpers
     bool CanChangeEquipStateInCombat() const
     {
-        switch(InventoryType)
+        switch (InventoryType)
         {
             case INVTYPE_RELIC:
             case INVTYPE_SHIELD:
@@ -664,7 +664,7 @@ struct ItemTemplate
                 return true;
         }
 
-        switch(Class)
+        switch (Class)
         {
             case ITEM_CLASS_WEAPON:
             case ITEM_CLASS_PROJECTILE:

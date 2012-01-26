@@ -1117,7 +1117,7 @@ bool Guardian::UpdateStats(Stats stat)
             mod = 0.45f;
             if (isPet())
             {
-                switch(ToPet()->GetTalentType())
+                switch (ToPet()->GetTalentType())
                 {
                     case PET_TALENT_TYPE_NOT_HUNTER_PET:
                         break;
@@ -1214,7 +1214,7 @@ void Guardian::UpdateArmor()
     if (isPet())
     {
         float mod = 0.35f;
-        switch(ToPet()->GetTalentType())
+        switch (ToPet()->GetTalentType())
         {
         case PET_TALENT_TYPE_NOT_HUNTER_PET:
             break;

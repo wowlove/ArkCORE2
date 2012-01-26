@@ -1226,7 +1226,7 @@ public:
     //bool OnGossipSelect(Player* player, Creature* creature, uint32 Sender, uint32 action)
     //{
     //    player->PlayerTalkClass->ClearMenus();
-    //    switch(action)
+    //    switch (action)
     //    {
     //        case GOSSIP_ACTION_INFO_DEF+1:
     //            if (player)
@@ -1267,7 +1267,7 @@ class go_ulduar_tower : public GameObjectScript
     public:
         go_ulduar_tower() : GameObjectScript("go_ulduar_tower") { }
 
-        void OnDestroyed(GameObject* go, Player* /*player*/,  uint32 /*value*/)
+        void OnDestroyed(GameObject* go, Player* /*player*/, uint32 /*value*/)
         {
             InstanceScript* instance = go->GetInstanceScript();
             if (!instance)
@@ -1680,7 +1680,7 @@ public:
         void FilterTargetsSubsequently(std::list<Unit*>& targets)
         {
             targets.clear();
-                if(_target)
+                if (_target)
                     targets.push_back(_target);
         }
 

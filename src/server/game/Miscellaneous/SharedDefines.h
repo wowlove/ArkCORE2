@@ -179,12 +179,12 @@ enum Powers
     POWER_HAPPINESS                     = 4,
     POWER_RUNE                          = 5,
     POWER_RUNIC_POWER                   = 6,
-    POWER_SOULSHARD                     = 7,
+    POWER_SOULSHARDS                    = 7,
     POWER_ECLIPSE                       = 8,
     POWER_HOLY_POWER                    = 9,
-    POWER_ALTERNATIVE                   = 10,           // Used in some quests
-    MAX_POWERS                          = 11,
-    POWER_ALL                           = 127,          // default for class?
+  // POWER_UNK                           = 10,
+    MAX_POWERS                          = 10,
+    POWER_ALL                           = 127,    // default for class?
     POWER_HEALTH                        = 0xFFFFFFFE    // (-2 as signed value)
 };
 
@@ -2685,7 +2685,7 @@ enum SkillType
 
 inline SkillType SkillByLockType(LockType locktype)
 {
-    switch(locktype)
+    switch (locktype)
     {
         case LOCKTYPE_PICKLOCK:    return SKILL_LOCKPICKING;
         case LOCKTYPE_HERBALISM:   return SKILL_HERBALISM;
