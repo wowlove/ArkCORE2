@@ -475,8 +475,9 @@ enum SMART_ACTION
     SMART_ACTION_JUMP_TO_POS                        = 97,     // speedXY, speedZ, targetX, targetY, targetZ
     SMART_ACTION_SEND_GOSSIP_MENU                   = 98,     // menuId, optionId
     SMART_ACTION_GO_SET_LOOT_STATE                  = 99,     // state
+    SMART_ACTION_SEND_TARGET_TO_TARGET              = 100,
 
-    SMART_ACTION_END                                = 100,
+    SMART_ACTION_END                                = 101,
 };
 
 struct SmartAction
@@ -883,6 +884,11 @@ struct SmartAction
         {
             uint32 state;
         } setGoLootState;
+
+        struct
+        {
+            uint32 id;
+        } sendTargetToTarget;
 
         struct
         {

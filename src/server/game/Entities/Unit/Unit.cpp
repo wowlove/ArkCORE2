@@ -15834,6 +15834,8 @@ bool Unit::SetCharmedBy(Unit* charmer, CharmType type, AuraApplication const* au
     if (GetTypeId() == TYPEID_UNIT)
     {
         ToCreature()->AI()->OnCharmed(true);
+        GetMotionMaster()->Clear(false);
+        StopMoving();
         GetMotionMaster()->MoveIdle();
     }
     else
@@ -17160,7 +17162,7 @@ void Unit::_ExitVehicle(Position const* exitPosition)
 
     WorldPacket data2;
     BuildHeartBeatMsg(&data2);
-    SendMessageToSet(&data2, true);
+    SendMessageToSet(&data2, false);
 
     if (vehicle->GetBase()->HasUnitTypeMask(UNIT_MASK_MINION))
         if (((Minion*)vehicle->GetBase())->GetOwner() == this)

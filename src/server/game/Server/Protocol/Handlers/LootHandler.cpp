@@ -378,7 +378,7 @@ void WorldSession::DoLootRelease(uint64 lguid)
         else
         {
             // not fully looted object
-            go->SetLootState(GO_ACTIVATED);
+            go->SetLootState(GO_ACTIVATED, player);
 
             // if the round robin player release, reset it.
             if (player->GetGUID() == loot->roundRobinPlayer)
