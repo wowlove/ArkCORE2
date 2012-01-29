@@ -72,7 +72,7 @@ public:
             {
                 DoCast(me->getVictim(), SPELL_KNOCKAWAY);
                 KnockAway_Timer = 15000;
-            } 
+            }
             else KnockAway_Timer -= diff;
 
             //Trample_Timer
@@ -80,7 +80,7 @@ public:
             {
                 DoCast(me, SPELL_TRAMPLE);
                 Trample_Timer = 8000;
-            } 
+            }
             else Trample_Timer -= diff;
 
             //Landslide
@@ -91,7 +91,7 @@ public:
                     me->InterruptNonMeleeSpells(false);
                     DoCast(me, SPELL_LANDSLIDE);
                     Landslide_Timer = 60000;
-                } 
+                }
                 else Landslide_Timer -= diff;
             }
 

@@ -78,7 +78,7 @@ public:
             {
                 DoCast(me, SPELL_DUSTFIELD);
                 Dustfield_Timer = 14000;
-            } 
+            }
             else Dustfield_Timer -= diff;
 
             //Boulder_Timer
@@ -89,7 +89,7 @@ public:
                 if (target)
                     DoCast(target, SPELL_BOULDER);
                 Boulder_Timer = 10000;
-            } 
+            }
             else Boulder_Timer -= diff;
 
             //RepulsiveGaze_Timer
@@ -97,7 +97,7 @@ public:
             {
                 DoCast(me->getVictim(), SPELL_REPULSIVEGAZE);
                 RepulsiveGaze_Timer = 20000;
-            } 
+            }
             else RepulsiveGaze_Timer -= diff;
 
             //Thrash_Timer
@@ -105,7 +105,7 @@ public:
             {
                 DoCast(me, SPELL_THRASH);
                 Thrash_Timer = 18000;
-            } 
+            }
             else Thrash_Timer -= diff;
 
             DoMeleeAttackIfReady();
