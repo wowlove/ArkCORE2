@@ -35,6 +35,17 @@ enum ScriptTexts
     EMOTE_BONE_STORM            = 7,
 };
 
+enum Sound
+{
+    S_ENTER_ZONE                = 16950,
+	S_AGGRO                     = 16941,
+	S_BONE_STORM                = 16946,
+	S_BONESPIKE                 = 16947,
+	S_KILL                      = 16942,
+	S_DEATH                     = 16944,
+	S_BERSERK                   = 16945,
+};
+
 enum Spells
 {
     // Lord Marrowgar
@@ -107,11 +118,11 @@ class boss_lord_marrowgar : public CreatureScript
                 events.ScheduleEvent(EVENT_COLDFLAME, 5000, EVENT_GROUP_SPECIAL);
                 events.ScheduleEvent(EVENT_WARN_BONE_STORM, urand(45000, 50000));
                 events.ScheduleEvent(EVENT_ENRAGE, 600000);
-                _boneSlice = false;
             }
 
             void EnterCombat(Unit* /*who*/)
             {
+				DoPlaySoundToSet(me,S_AGGRO);
                 Talk(SAY_AGGRO);
 
                 me->setActive(true);
@@ -121,6 +132,7 @@ class boss_lord_marrowgar : public CreatureScript
 
             void JustDied(Unit* /*killer*/)
             {
+				DoPlaySoundToSet(me,S_DEATH);
                 Talk(SAY_DEATH);
 
                 _JustDied();
@@ -136,6 +148,7 @@ class boss_lord_marrowgar : public CreatureScript
             void KilledUnit(Unit* victim)
             {
                 if (victim->GetTypeId() == TYPEID_PLAYER)
+					DoPlaySoundToSet(me,S_KILL);
                     Talk(SAY_KILL);
             }
 
@@ -143,6 +156,7 @@ class boss_lord_marrowgar : public CreatureScript
             {
                 if (!_introDone && me->IsWithinDistInMap(who, 70.0f))
                 {
+					DoPlaySoundToSet(me,S_ENTER_ZONE);
                     Talk(SAY_ENTER_ZONE);
                     _introDone = true;
                 }
@@ -189,6 +203,7 @@ class boss_lord_marrowgar : public CreatureScript
                             if (Aura* pStorm = me->GetAura(SPELL_BONE_STORM))
                                 pStorm->SetDuration(int32(_boneStormDuration));
                             me->SetSpeed(MOVE_RUN, _baseSpeed*3.0f, true);
+							DoPlaySoundToSet(me,S_BONE_STORM);
                             Talk(SAY_BONE_STORM);
                             events.ScheduleEvent(EVENT_BONE_STORM_END, _boneStormDuration+1);
                             // no break here
@@ -217,6 +232,7 @@ class boss_lord_marrowgar : public CreatureScript
                             break;
                         case EVENT_ENRAGE:
                             DoCast(me, SPELL_BERSERK, true);
+							DoPlaySoundToSet(me,S_BERSERK);
                             Talk(SAY_BERSERK);
                             break;
                     }
@@ -537,10 +553,8 @@ class spell_marrowgar_bone_spike_graveyard : public SpellScriptLoader
 
                         didHit = true;
                         target->CastCustomSpell(boneSpikeSummonId[i], SPELLVALUE_BASE_POINT0, 0, target, true);
-                    }
 
-                    if (didHit)
-                        marrowgarAI->Talk(SAY_BONESPIKE);
+                    }
                 }
             }
 
