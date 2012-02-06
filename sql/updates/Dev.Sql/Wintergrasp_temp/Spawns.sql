@@ -155,7 +155,7 @@ INSERT INTO `waypoint_data` (`id`,`point`,`position_x`,`position_y`,`position_z`
 (@PATH,6,5296.644,2731.107,409.3163,0,0,0,100,0);
 
 -- Guards "Alliance" (Valiance Expedition Champion)
-SET @GUID := 291000;
+SET @GUID := 2910000;
 DELETE FROM `creature` WHERE `id`=30740;
 INSERT INTO `creature` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`modelid`,`equipment_id`,`position_x`,`position_y`,`position_z`,`orientation`,`spawntimesecs`,`spawndist`,`currentwaypoint`,`curhealth`,`curmana`,`MovementType`) VALUES
 -- Fortress
@@ -398,7 +398,7 @@ INSERT INTO `gameobject` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`position_x`
 */
 
 -- Misc objects in fortress phased properly
-SET @OGUID := 282000;
+SET @OGUID := 2820000;
 DELETE FROM `gameobject` WHERE `guid` IN (67165,67224,67222,67190,67195,67216,67193,67182,67186,67192,67161,67164,67180,67187);
 DELETE FROM `gameobject` WHERE `guid` BETWEEN @OGUID AND @OGUID+55;
 INSERT INTO `gameobject` (`guid`,`id`,`map`,`spawnMask`,`phaseMask`,`position_x`,`position_y`,`position_z`,`orientation`,`rotation0`,`rotation1`,`rotation2`,`rotation3`,`spawntimesecs`,`animprogress`,`state`) VALUES
