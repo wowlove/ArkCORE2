@@ -275,8 +275,17 @@ void WorldSession::HandleMessagechatOpcode(WorldPacket & recv_data)
 
             if (!normalizePlayerName(channelOrWhisperName))
             {
+                // If Fake WHO List system on then show player DND
+                if (sWorld.getConfig(CONFIG_BOOL_FAKE_WHO_LIST))
+                {
+                    sWorld.SendWorldText(LANG_NOT_WHISPER);
+                    return;
+                }
+                else
+                {				
                 SendPlayerNotFoundNotice(channelOrWhisperName);
                 break;
+                }
             }
 
             Player* receiver = sObjectAccessor->FindPlayerByName(channelOrWhisperName.c_str());

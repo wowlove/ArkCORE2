@@ -955,7 +955,8 @@ enum SkyFireStrings
     LANG_COMMAND_LOOKUP_MAX_RESULTS     = 5029,
     LANG_FLEE                           = 5030,
     LANG_NPCINFO_AIINFO                 = 5031,
-    // Room for more SkyFire strings      5032-9999
+    LANG_NOT_WHISPER                    = 5032,
+	 // Room for more SkyFire strings      5033-9999
 
     // Level requirement notifications
     LANG_SAY_REQ                        = 6604,

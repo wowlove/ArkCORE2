@@ -241,7 +241,7 @@ MapUpdateInterval = 100
 #        Description: Time (in milliseconds) for weather update interval.
 #        Default:     600000 - (10 min)
 
-ChangeWeatherInterval = 600000
+ChangeWeatherInterval = 5400000
 
 #
 #    PlayerSaveInterval
@@ -1534,6 +1534,15 @@ AllowTwoSide.Trade = 0
 #                     0 - (Disabled)
 
 TalentsInspecting = 1
+
+#
+#    Fake.WHO.List
+#        Add fake players to fill in WHO LIST (who is online list, "O" button) if there is less then
+#        49 real players online (need to set online=2 in character database in order to work)
+#        Default: 0 (disabled)
+#                 1 (enabled)
+
+Fake.Who.List = 1
 
 #
 ###################################################################################################
