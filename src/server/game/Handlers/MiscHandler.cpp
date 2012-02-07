@@ -359,17 +359,18 @@ void WorldSession::HandleWhoOpcode(WorldPacket & recv_data)
         ++displaycount;
     }
 
-    if (sWorld.getConfig(CONFIG_BOOL_FAKE_WHO_LIST) && clientcount < 49)
+    if (sWorld->getBoolConfig(CONFIG_FAKE_WHO_LIST) && displaycount < 49)
     {
         // Fake players on WHO LIST                            0,   1,    2,   3,    4,   5     6
-        QueryResult *result = CharacterDatabase.Query("SELECT guid,name,race,class,level,zone,gender FROM characters WHERE online>1");
+        QueryResult result = CharacterDatabase.Query("SELECT guid,name,race,class,level,zone,gender FROM characters WHERE online>1");
+		
         if (result)
         {
             do
             {
-                Field *fields = result->Fetch();
+                Field* fields = result->Fetch();
 
-                std::string pname = fields[1].GetCppString();    // player name
+                std::string pname = fields[1].GetCString();    // player name
                 std::string gname;                                // guild name
                 uint32 lvl = fields[4].GetUInt32();                // player level
                 uint32 class_ = fields[3].GetUInt32();            // player class
@@ -385,11 +386,11 @@ void WorldSession::HandleWhoOpcode(WorldPacket & recv_data)
                 data << uint8(gender);                      // player gender
                 data << uint32(pzoneid);                    // player zone id
 
-                if ((++clientcount) == 49)
+                if ((++displaycount) == 49)
                     break;
-            } while (result->NextRow());
+            } 
+			while (result->NextRow());
         }
-        delete result;
     }
 	
     data.put(0, displaycount);                            // insert right count, count displayed

@@ -56,7 +56,7 @@ bool Weather::Update(uint32 diff)
         _timer.Reset();
 
         // If Fake WHO List system on then update level of fake plyer with every weather change interval (we will set it on 90 minutes)
-        if (sWorld.getConfig(CONFIG_BOOL_FAKE_WHO_LIST))
+        if (sWorld->getBoolConfig(CONFIG_FAKE_WHO_LIST))
         {
         CharacterDatabase.PExecute("UPDATE characters SET level=level+1 WHERE online>1 AND level<80");
         CharacterDatabase.PExecute("UPDATE characters SET level=level+2 WHERE online>1 AND level BETWEEN 5 and 19");
